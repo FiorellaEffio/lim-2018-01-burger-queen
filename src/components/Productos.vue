@@ -12,7 +12,7 @@
               <p>Precio: S./{{product.precio}}</p>
             </div>
             <div class="card-action">
-              <a href="#">Agregar al carrito</a>
+              <button @click="passToOrder(product)">Agregar al carrito</button>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
               <p>Precio: S./{{product.precio}}</p>
             </div>
             <div class="card-action">
-              <a href="#">Agregar al carrito</a>
+              <button @click="passToOrder(product)">Agregar al carrito</button>
             </div>
           </div>
         </div>
@@ -41,6 +41,7 @@
 
 <script>
 import { db } from '../main'
+import { bus } from '../main'
 export default {
   name: 'Productos',
   data () {
@@ -73,6 +74,12 @@ export default {
         }
       })
       return result;
+    }
+  },
+  methods: {
+    passToOrder: function(element) {
+      console.log(element);
+      bus.$emit('orderProducts', element);
     }
   }
 }

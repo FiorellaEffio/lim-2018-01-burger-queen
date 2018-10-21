@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { bus } from '../main'
+
 export default {
   name: 'Pedido',
   data () {
@@ -27,6 +29,11 @@ export default {
     // orderPricesComputed: {
     //
     // }
+  },
+  created(){
+    bus.$on('orderProducts',(data) => {
+      this.productsOrder.push(data);
+    })
   }
 }
 </script>
