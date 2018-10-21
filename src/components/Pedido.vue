@@ -3,8 +3,8 @@
     Hola {{nombreCliente}}
     <input type="text" v-model="nombreCliente">
     <ul class="collection">
-      <li v-for="product in productsOrder" class="collection-item">
-        {{product.nombre}} + {{product.precio}}
+      <li v-for="product in productsOrderComputed" class="collection-item">
+        {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
       </li>
     </ul>
     Pedido total: {{totalPrice}}
@@ -23,9 +23,28 @@ export default {
     }
   },
   computed: {
-    // productsOrderComputed: {
-    //
-    // },
+    productsCountComputed: function(){
+      // agregamos cantidad de 1 a cada elemento
+      let productsCount = [];
+      this.productsOrder.forEach((element) => {
+        element.cantidad = 0;
+        productsCount.push(element);
+      })
+      return productsCount;
+    },
+    productsOrderComputed: function(){
+      let uniqueProducts = (this.productsCountComputed.filter((item, index, array) => {
+        return array.indexOf(item) === index;
+      }));
+      uniqueProducts.forEach(element => {
+        this.productsCountComputed.forEach(product => {
+          if(product.nombre == element.nombre) {
+            element.cantidad++;
+          }
+        })
+      })
+      return uniqueProducts;
+    },
     totalPrice: function() {
       let result = 0;
       this.productsOrder.forEach((element) => {
@@ -38,6 +57,12 @@ export default {
     bus.$on('orderProducts',(data) => {
       this.productsOrder.push(data);
     })
+  },
+  methods: {
+    deleteProduct: function(product) {
+      console.log(product);
+
+    }
   }
 }
 </script>
