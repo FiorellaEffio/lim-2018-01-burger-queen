@@ -1,35 +1,7 @@
 <template>
   <div class="container">
-    <ul class="collapsible popout">
-      <li>
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-        <div class="collapsible-body"><span>
-          <div class="" v-for="(product, nombre) in allDayProducts" :key="nombre">
-            <div class="col s12 m6">
-              <div class="card">
-                <div class="card-image">
-                  <img width="100px" :src="product.src">
-                  <span class="card-title black-text">{{product.nombre}}</span>
-                </div>
-                <div class="card-content">
-                  <p>Precio: S./{{product.precio}}</p>
-                </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </span>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-        <div class="collapsible-body"><span>Resto del día.</span></div>
-      </li>
-    </ul>
-
-      <div class="" v-for="(product, nombre) in allDayProducts" :key="nombre">
+    <button v-on:click="desayuno = !desayuno, allday = !allday">Desayuno o Allday</button>
+      <div v-if="desayuno" v-for="(product, nombre) in breakfastProducts" :key="nombre">
         <div class="col s12 m6">
           <div class="card">
             <div class="card-image">
@@ -40,12 +12,30 @@
               <p>Precio: S./{{product.precio}}</p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
+              <a href="#">Agregar al carrito</a>
             </div>
           </div>
         </div>
       </div>
+      <div v-if="allday" v-for="(product, nombre) in allDayProducts" :key="nombre">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img width="100px" :src="product.src">
+              <span class="card-title black-text">{{product.nombre}}</span>
+            </div>
+            <div class="card-content">
+              <p>Precio: S./{{product.precio}}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-else>
 
+      </div>
   </div>
 </template>
 
@@ -55,7 +45,9 @@ export default {
   name: 'Productos',
   data () {
     return {
-      products: []
+      products: [],
+      desayuno: true,
+      allday: false
     }
   },
   firestore () {

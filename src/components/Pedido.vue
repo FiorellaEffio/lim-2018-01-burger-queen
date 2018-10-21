@@ -1,0 +1,37 @@
+<template>
+  <div class="container">
+    Hola {{nombreCliente}}
+    <input type="text" v-model="nombreCliente">
+    <ul class="collection">
+      <li v-for="product in productsOrder" class="collection-item">
+        {{product.nombre}} + {{product.precio}}
+      </li>
+    </ul>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Pedido',
+  data () {
+    return {
+      productsOrder: [],
+      nombreCliente: '',
+    }
+  },
+  computed: {
+    // productsOrderComputed: {
+    //
+    // },
+    // orderPricesComputed: {
+    //
+    // }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>
