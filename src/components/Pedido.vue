@@ -8,6 +8,7 @@
       </li>
     </ul>
     Pedido total: {{totalPrice}}
+    <button>Enviar pedido</button>
   </div>
 </template>
 
@@ -61,7 +62,12 @@ export default {
   methods: {
     deleteProduct: function(product) {
       console.log(product);
-
+      for(let i = 0; i<this.productsOrder.length; i++){
+        if(this.productsOrder[i].nombre === product){
+          this.productsOrder.splice(i, 1);
+          i--;
+        }
+      }
     }
   }
 }
