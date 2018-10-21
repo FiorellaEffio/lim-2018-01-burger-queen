@@ -7,7 +7,7 @@
         {{product.nombre}} + {{product.precio}}
       </li>
     </ul>
-
+    Pedido total: {{totalPrice}}
   </div>
 </template>
 
@@ -26,9 +26,13 @@ export default {
     // productsOrderComputed: {
     //
     // },
-    // orderPricesComputed: {
-    //
-    // }
+    totalPrice: function() {
+      let result = 0;
+      this.productsOrder.forEach((element) => {
+        result += element.precio;
+      })
+      return result;
+    }
   },
   created(){
     bus.$on('orderProducts',(data) => {
