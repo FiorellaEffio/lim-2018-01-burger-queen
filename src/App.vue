@@ -4,6 +4,7 @@
       <Productos class="col s6"/>
       <Pedido class="col s6"/>
     </div>
+    
   </div>
 </template>
 

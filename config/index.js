@@ -1,6 +1,9 @@
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+
+import "material-design-icons-iconfont/dist/material-design-icons.css"; // Ensure you are using css-loader
 
 const path = require('path')
 
@@ -20,7 +23,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
