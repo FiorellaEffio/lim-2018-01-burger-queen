@@ -22,6 +22,10 @@ firebase.initializeApp({
   authDomain: "burguer-queen-effio.firebaseapp.com"
 });
 export const db = firebase.firestore();
+const settings = {timestampsInSnapshots: true};
+db.settings(settings);
+
+
 export const bus = new Vue();
 /* eslint-disable no-new */
 new Vue({

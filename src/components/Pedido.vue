@@ -1,14 +1,17 @@
 <template>
   <div class="container">
-    Hola {{nombreCliente}}
-    <input type="text" v-model="nombreCliente">
-    <ul class="collection">
-      <li v-for="product in productsOrderComputed" class="collection-item">
-        {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
-      </li>
-    </ul>
-    Pedido total: {{totalPrice}}
-    <button>Enviar pedido</button>
+
+    <form @submit.prevent="addOrder()">
+      Hola {{nombreCliente}}
+      <input type="text" v-model="nombreCliente">
+      <ul class="collection">
+        <li v-for="product in productsOrderComputed" class="collection-item">
+          {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
+        </li>
+      </ul>
+      Pedido total: {{totalPrice}}
+      <button type="submit">Enviar pedido</button>
+    </form>
     <template>
   <v-card height="200px" flat>
     <div class="headline text-xs-center pa-5">
@@ -54,7 +57,7 @@
 
 <script>
 import { bus } from '../main'
-
+import { db } from '../main'
 export default {
   name: 'Pedido',
   data () {
@@ -109,6 +112,9 @@ export default {
           i--;
         }
       }
+    },
+    addOrder: function() {
+      db.collection('pedidos').add({ productos: this.productsOrderComputed, cliente: this.nombreCliente })
     }
   }
 }
