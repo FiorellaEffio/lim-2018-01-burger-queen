@@ -8,7 +8,7 @@
                 <br><br><br>
                 <br><br><br>
                 <v-layout row>
-                  <v-flex xs12 sm6 offset-sm3>
+                  <v-flex xs12>
                     <v-card>
                       <v-toolbar color="teal" dark>
                         <v-toolbar-title class="text-xs-center">Desayuno</v-toolbar-title>
@@ -44,7 +44,7 @@
                 <br><br><br>
                 <br><br><br>
                 <v-layout row>
-                  <v-flex xs12 sm6 offset-sm3>
+                  <v-flex xs12>
                     <v-card>
                       <v-toolbar color="teal" dark>
                         <v-toolbar-title class="text-xs-center">Resto del día</v-toolbar-title>

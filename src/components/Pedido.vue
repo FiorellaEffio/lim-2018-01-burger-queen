@@ -1,21 +1,55 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addOrder()">
-      Hola {{nombreCliente}}
-      <input type="text" v-model="nombreCliente">
-      <ul class="collection">
-        <li v-for="product in productsOrderComputed" class="collection-item">
-          {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
-        </li>
-      </ul>
-      Pedido total: {{totalPrice}}
-      <button type="submit">Enviar pedido</button>
-    </form>
-    //spinner
-      <div class="wrap">
-        <div class="spinner spinner-1"></div>
-      </div>
-    //spinner
+    Hola {{nombreCliente}}
+    <input type="text" v-model="nombreCliente">
+    <v-layout row>
+      
+      <v-flex xs12 offset-sm1>
+        <v-card>
+          <v-list two-line subheader>
+            <v-subheader>Tu pedido</v-subheader>
+            <form @submit.prevent="addOrder()">
+              
+              <ul class="collection">
+                <li v-for="product in productsOrderComputed" class="collection-item">
+                  {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
+                </li>
+              </ul>
+              <button type="submit">Enviar pedido</button>
+            
+            
+            <v-list-tile avatar>
+              <v-list-tile-content>
+                <v-list-tile-title>Show your status</v-list-tile-title>
+                <v-list-tile-sub-title>Your status is visible to everyone</v-list-tile-sub-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-btn icon ripple >
+                  <v-icon color="grey lighten-1">delete</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+            </form>
+          </v-list>
+          <v-divider></v-divider>
+          <v-list
+            subheader
+            two-line
+          >
+            <v-subheader>Total: {{totalPrice}}</v-subheader>
+          </v-list>
+        </v-card>
+      </v-flex>
+    </v-layout>
+     
+
+     //spinner
+              <div class="wrap">
+                <div class="spinner spinner-1"></div>
+              </div>
+            //spinner
+
+    
   </div>
 </template>
 
