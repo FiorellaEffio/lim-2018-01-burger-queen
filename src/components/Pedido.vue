@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <form @submit.prevent="addOrder()">
       Hola {{nombreCliente}}
       <input type="text" v-model="nombreCliente">
@@ -12,6 +11,11 @@
       Pedido total: {{totalPrice}}
       <button type="submit">Enviar pedido</button>
     </form>
+    //spinner
+      <div class="wrap">
+        <div class="spinner spinner-1"></div>
+      </div>
+    //spinner
     <template>
   <v-card height="200px" flat>
     <div class="headline text-xs-center pa-5">
@@ -122,5 +126,34 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .spinner {
+    width: 100px;
+    height: 100px;
+    background: #eee;
+    border-radius: 50%;
+    position: relative;
+    margin: 50px;
+    display: inline-block;
+  }
+  .spinner:after, .spinner:before {
+    content: '';
+    display: block;
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+  }
+  .spinner:after {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    border: 4px solid transparent;
+    border-top-color: orangered;
+    border-bottom-color: orangered;
+    animation: spinny 2s linear infinite;
+  }
+  @keyframes spinny {
+    0%   {transform: rotate(0deg) scale(1);}
+    50%  {transform: rotate(180deg) scale(1.5)}
+    100% {transform: rotate(360deg) scale(1);}
+  }
 </style>
