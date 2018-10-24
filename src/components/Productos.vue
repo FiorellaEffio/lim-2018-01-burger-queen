@@ -7,24 +7,39 @@
               <div v-if="bottomNav === 'desayuno'">
                 <br><br><br>
                 <br><br><br>
-                <h2>desayuno</h2>
-                <div v-for="(product, nombre) in breakfastProducts" :key="nombre">
-                  <div class="col s12 m6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img width="100px" :src="product.src">
-                        <span class="card-title black-text">{{product.nombre}}</span>
-                      </div>
-                      <div class="card-content">
-                        <p>Precio: S./{{product.precio}}</p>
-                      </div>
-                      <div class="card-action">
-                        <button @click="passToOrder(product)">Agregar al carrito</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <v-layout row>
+                  <v-flex xs12 sm6 offset-sm3>
+                    <v-card>
+                      <v-toolbar color="teal" dark>
+                        <v-toolbar-title class="text-xs-center">Desayuno</v-toolbar-title>
+                      </v-toolbar>
+                      <v-list two-line subheader>
+                        <v-subheader>Hasta las 11:00am</v-subheader>
+                        <v-list-tile
+                          v-for="(product, nombre) in breakfastProducts" :key="nombre"
+                          avatar
+                          @click=""
+                        >
+                          <v-list-tile-avatar>
+                            <img :src="product.src">
+                          </v-list-tile-avatar>
+              
+                          <v-list-tile-content>
+                            <v-list-tile-title v-html="product.nombre"></v-list-tile-title>
+                            <v-list-tile-sub-title v-html="product.precio"></v-list-tile-sub-title>
+                          </v-list-tile-content>
+              
+                          <v-list-tile-action>
+                            <button @click="passToOrder(product)"><v-icon color="teal">add_shopping_cart</v-icon></button>
+                          </v-list-tile-action>
+                        </v-list-tile>
+                      </v-list>
+                    </v-card>
+                  </v-flex>
+                </v-layout>
               </div>
+
+              
               <div v-if="bottomNav === 'allday'">
                 <br><br><br>
                 <br><br><br>
