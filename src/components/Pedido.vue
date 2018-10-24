@@ -16,46 +16,6 @@
         <div class="spinner spinner-1"></div>
       </div>
     //spinner
-    <template>
-  <v-card height="200px" flat>
-    <div class="headline text-xs-center pa-5">
-      Active: {{ bottomNav }}
-    </div>
-    <v-bottom-nav
-      :active.sync="bottomNav"
-      :value="true"
-      absolute
-      color="transparent"
-    >
-      <v-btn
-        color="teal"
-        flat
-        value="recent"
-      >
-        <span>Recent</span>
-        <v-icon>history</v-icon>
-      </v-btn>
-
-      <v-btn
-        color="teal"
-        flat
-        value="favorites"
-      >
-        <span>Favorites</span>
-        <v-icon>favorite</v-icon>
-      </v-btn>
-
-      <v-btn
-        color="teal"
-        flat
-        value="nearby"
-      >
-        <span>Nearby</span>
-        <v-icon>place</v-icon>
-      </v-btn>
-    </v-bottom-nav>
-  </v-card>
-</template>
   </div>
 </template>
 
@@ -68,7 +28,6 @@ export default {
     return {
       productsOrder: [],
       nombreCliente: '',
-      bottomNav: 'recent'
     }
   },
   computed: {
@@ -118,7 +77,18 @@ export default {
       }
     },
     addOrder: function() {
-      db.collection('pedidos').add({ productos: this.productsOrderComputed, cliente: this.nombreCliente })
+
+      if((this.nombreCliente).trim().length !== 0 && this.productsOrderComputed.length !== 0) {
+        db.collection('pedidos').add({ productos: this.productsOrderComputed, cliente: this.nombreCliente })
+        alert('Hemos recibido el pedido');
+      } else {
+        if(this.nombreCliente.trim().length === 0) {
+          alert('Ingresa tu nombre porfavor');
+        }
+        if(this.productsOrderComputed.length === 0) {
+          alert('No has seleccionado ningún producto')
+        }
+      }
     }
   }
 }
