@@ -13,7 +13,7 @@
       >
 
         <v-toolbar-title class="align-center">
-          <img src="./assets/burguerqueen-logo.png" width="40%" alt="">
+          <img src="http://subirimagen.me/uploads/20181025183622.png" width="40%">
         </v-toolbar-title>
   
   
