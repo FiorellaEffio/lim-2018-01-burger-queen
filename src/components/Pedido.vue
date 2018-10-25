@@ -16,11 +16,18 @@
     <v-layout row>
       <v-flex xs12 offset-sm1>
         <form @submit.prevent="addOrder()">
-
+        <v-flex xs12>
+          <label for="">Ingresa tu nombre porfavor</label> <br><br>
+          <v-text-field v-model="nombreCliente"
+            outline
+            
+            prepend-icon="person"
+          ></v-text-field>
+  
+        </v-flex>
+        <br>
         <v-card>
           <v-list two-line subheader>
-            <v-text-field v-model="nombreCliente" label="Porfavor ingresa aquí tu nombre :)">
-            </v-text-field>
             <v-subheader>Tu pedido</v-subheader>
 
               <v-list-tile avatar v-for="product in productsOrderComputed" :key="product.nombre">
