@@ -1,9 +1,33 @@
 <template>
   <div id="app">
-    <div class="row container">
-      <Productos class="col s6"/>
-      <Pedido class="col s6"/>
-    </div>
+    <div  
+      class="hide-overflow"
+      style="position: relative;"
+    >
+      <v-toolbar 
+        absolute
+        color="blue"
+        dark
+        scroll-off-screen
+        scroll-target="#scrolling-techniques"
+      >
+
+        <v-toolbar-title class="align-center">
+          <img src="./assets/burguerqueen-logo.png" width="40%" alt="">
+        </v-toolbar-title>
+  
+  
+        
+      </v-toolbar>
+      
+        <v-container style="height: 700px;">
+          <div class="row container">
+            <Productos class="col s6 arr"/>
+            <Pedido class="col s6 arriba"/>
+          </div>
+        </v-container>
+      </div>
+
     
   </div>
 </template>
@@ -20,5 +44,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.arriba{
+  margin-top: 5.2% !important;
+}
+.arr{
+  margin-top: -8% !important;
+}
+.align-center {
+  align-self: center;
+  margin-left: 36%;
+  margin-top:1.5%;
+}
 </style>

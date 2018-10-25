@@ -13,10 +13,7 @@
         </v-btn>
       </v-snackbar>
     </v-card>
-
-
     <v-layout row>
-
       <v-flex xs12 offset-sm1>
         <form @submit.prevent="addOrder()">
 
@@ -26,7 +23,7 @@
             </v-text-field>
             <v-subheader>Tu pedido</v-subheader>
 
-              <v-list-tile avatar v-for="product in productsOrderComputed">
+              <v-list-tile avatar v-for="product in productsOrderComputed" :key="product.nombre">
                 <v-list-tile-content>
                   <v-list-tile-title>{{product.nombre}}</v-list-tile-title>
                   <v-list-tile-sub-title>Precio por unidad: {{product.precio}} / Cantidad: {{product.cantidad}}</v-list-tile-sub-title>

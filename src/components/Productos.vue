@@ -10,7 +10,7 @@
                 <v-layout row>
                   <v-flex xs12>
                     <v-card>
-                      <v-toolbar color="teal" dark>
+                      <v-toolbar color="orange" dark>
                         <v-toolbar-title class="text-xs-center">Desayuno</v-toolbar-title>
                       </v-toolbar>
                       <v-list two-line subheader>
@@ -30,7 +30,7 @@
                           </v-list-tile-content>
               
                           <v-list-tile-action>
-                            <button @click="passToOrder(product)"><v-icon color="teal">add_shopping_cart</v-icon></button>
+                            <button @click="passToOrder(product)"><v-icon color="blue">add_shopping_cart</v-icon></button>
                           </v-list-tile-action>
                         </v-list-tile>
                       </v-list>
@@ -46,7 +46,7 @@
                 <v-layout row>
                   <v-flex xs12>
                     <v-card>
-                      <v-toolbar color="teal" dark>
+                      <v-toolbar color="orange" dark>
                         <v-toolbar-title class="text-xs-center">Resto del día</v-toolbar-title>
                       </v-toolbar>
                       <v-list two-line subheader>
@@ -66,7 +66,7 @@
                           </v-list-tile-content>
               
                           <v-list-tile-action>
-                            <button @click="passToOrder(product)"><v-icon color="teal">add_shopping_cart</v-icon></button>
+                            <button @click="passToOrder(product)"><v-icon color="blue">add_shopping_cart</v-icon></button>
                           </v-list-tile-action>
                         </v-list-tile>
                       </v-list>
@@ -84,7 +84,7 @@
               color="transparent"
             >
               <v-btn
-                color="teal"
+                color="blue"
                 flat
                 value="desayuno"
               >
@@ -92,7 +92,7 @@
                 <v-icon>local_cafe</v-icon>
               </v-btn>
               <v-btn
-                color="teal"
+                color="blue"
                 flat
                 value="allday"
               >
