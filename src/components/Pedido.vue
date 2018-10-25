@@ -6,48 +6,38 @@
         :color="color"
         :multi-line="mode === 'multi-line'"
         :timeout="timeout"
-        :vertical="mode === 'vertical'"
-      >
+        :vertical="mode === 'vertical'">
         {{ text }}
-        <v-btn
-          dark
-          flat
-          @click="snackbar = false"
-        >
+        <v-btn dark flat @click="snackbar = false">
           Close
         </v-btn>
       </v-snackbar>
     </v-card>
-    Hola {{nombreCliente}}
-    <input type="text" v-model="nombreCliente">
+
+
     <v-layout row>
 
       <v-flex xs12 offset-sm1>
+        <form @submit.prevent="addOrder()">
+
         <v-card>
           <v-list two-line subheader>
+            <v-text-field v-model="nombreCliente" label="Porfavor ingresa aquí tu nombre :)">
+            </v-text-field>
             <v-subheader>Tu pedido</v-subheader>
-            <form @submit.prevent="addOrder()">
 
-              <ul class="collection">
-                <li v-for="product in productsOrderComputed" class="collection-item">
-                  {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
-                </li>
-              </ul>
-              <button type="submit">Enviar pedido</button>
+              <v-list-tile avatar v-for="product in productsOrderComputed">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{product.nombre}}</v-list-tile-title>
+                  <v-list-tile-sub-title>Precio por unidad: {{product.precio}} / Cantidad: {{product.cantidad}}</v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-btn icon ripple  @click="deleteProduct(product.nombre)" :key="product.nombre">
+                    <v-icon color="grey lighten-1">delete</v-icon>
+                  </v-btn>
+                </v-list-tile-action>
+              </v-list-tile>
 
-
-            <v-list-tile avatar>
-              <v-list-tile-content>
-                <v-list-tile-title>Show your status</v-list-tile-title>
-                <v-list-tile-sub-title>Your status is visible to everyone</v-list-tile-sub-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-btn icon ripple >
-                  <v-icon color="grey lighten-1">delete</v-icon>
-                </v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-            </form>
           </v-list>
           <v-divider></v-divider>
           <v-list
@@ -57,17 +47,13 @@
             <v-subheader>Total: {{totalPrice}}</v-subheader>
           </v-list>
         </v-card>
+        <div class="text-xs-center">
+          <v-btn round block color="orange" dark type="submit">Enviar pedido</v-btn>
+        </div>
+      </form>
+
       </v-flex>
     </v-layout>
-
-
-     //spinner
-              <div class="wrap">
-                <div class="spinner spinner-1"></div>
-              </div>
-            //spinner
-
-
   </div>
 </template>
 
@@ -165,34 +151,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .spinner {
-    width: 100px;
-    height: 100px;
-    background: #eee;
-    border-radius: 50%;
-    position: relative;
-    margin: 50px;
-    display: inline-block;
-  }
-  .spinner:after, .spinner:before {
-    content: '';
-    display: block;
-    width: 100px;
-    height:100px;
-    border-radius: 50%;
-  }
-  .spinner:after {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    border: 4px solid transparent;
-    border-top-color: orangered;
-    border-bottom-color: orangered;
-    animation: spinny 2s linear infinite;
-  }
-  @keyframes spinny {
-    0%   {transform: rotate(0deg) scale(1);}
-    50%  {transform: rotate(180deg) scale(1.5)}
-    100% {transform: rotate(360deg) scale(1);}
-  }
+
 </style>
