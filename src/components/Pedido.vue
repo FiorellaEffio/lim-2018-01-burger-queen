@@ -1,23 +1,41 @@
 <template>
   <div class="container">
+    <v-card>
+      <v-snackbar
+        v-model="snackbar"
+        :color="color"
+        :multi-line="mode === 'multi-line'"
+        :timeout="timeout"
+        :vertical="mode === 'vertical'"
+      >
+        {{ text }}
+        <v-btn
+          dark
+          flat
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
+    </v-card>
     Hola {{nombreCliente}}
     <input type="text" v-model="nombreCliente">
     <v-layout row>
-      
+
       <v-flex xs12 offset-sm1>
         <v-card>
           <v-list two-line subheader>
             <v-subheader>Tu pedido</v-subheader>
             <form @submit.prevent="addOrder()">
-              
+
               <ul class="collection">
                 <li v-for="product in productsOrderComputed" class="collection-item">
                   {{product.nombre}} + {{product.precio}} / Cantidad: {{product.cantidad}}<button @click="deleteProduct(product.nombre)" :key="product.nombre">X</button>
                 </li>
               </ul>
               <button type="submit">Enviar pedido</button>
-            
-            
+
+
             <v-list-tile avatar>
               <v-list-tile-content>
                 <v-list-tile-title>Show your status</v-list-tile-title>
@@ -41,7 +59,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-     
+
 
      //spinner
               <div class="wrap">
@@ -49,7 +67,7 @@
               </div>
             //spinner
 
-    
+
   </div>
 </template>
 
@@ -62,6 +80,11 @@ export default {
     return {
       productsOrder: [],
       nombreCliente: '',
+      snackbar: false,
+      color: '',
+      mode: '',
+      timeout: 5000,
+      text: 'Hello, I\'m a snackbar'
     }
   },
   computed: {
@@ -114,14 +137,26 @@ export default {
 
       if((this.nombreCliente).trim().length !== 0 && this.productsOrderComputed.length !== 0) {
         db.collection('pedidos').add({ productos: this.productsOrderComputed, cliente: this.nombreCliente })
-        alert('Hemos recibido el pedido');
+        this.text = 'Hemos recibido el pedido';
+        this.color = 'info'
+        this.snackbar = true;
+        this.productsOrder = [];
+        this.nombreCliente = '';
       } else {
+        this.color = 'error'
         if(this.nombreCliente.trim().length === 0) {
-          alert('Ingresa tu nombre porfavor');
+          if(this.productsOrderComputed.length === 0) {
+            this.text = 'Ingresa tu nombre y selecciona por lo menos un producto';
+          } else {
+            this.text = 'Ingresa tu nombre porfavor';
+          }
+        } else {
+          if(this.productsOrderComputed.length === 0) {
+            this.text = 'Selecciona algún producto porfavor'
+          }
         }
-        if(this.productsOrderComputed.length === 0) {
-          alert('No has seleccionado ningún producto')
-        }
+
+        this.snackbar = true;
       }
     }
   }
